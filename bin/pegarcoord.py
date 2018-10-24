@@ -15,7 +15,8 @@ with open("TabelaCoord.csv", "w", encoding="latin-1") as out:
             while cur<1280:
                 cep = lin.split(";")[6].replace("\"", "")
                 cep = cep[:5]+"-"+cep[5:]
-                resp = requests.get("https://maps.googleapis.com/maps/api/geocode/json?address="+cep+"&key=AIzaSyDMDKSw4pD6Gbc4vwij9GLuMaKhPZIH1uo")
+                resp = requests.get("https://maps.googleapis.com/maps/api/geocode/json?address="+cep
+                                    +"&key=AIzaSyDMDKSw4pD6Gbc4vwij9GLuMaKhPZIH1uo")
                 json = resp.json()
                 try:
                     geometry = json["results"][0]["geometry"]
