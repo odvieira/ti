@@ -1,4 +1,4 @@
-Distância (de carro) até o câmpus (em km),Tempo (de carro) até o câmpus (em min),Endereço,Bairro,Cidade,UF,CEP,Curso,nelat,nelng,swlat,swlng,plat,plng
+Distância (de carro) até o câmpus (em km),Tempo (de carro) até o câmpus (em min),Endereço,Bairro,Cidade,UF,CEP,Curso,latNE,lonNE,latSW,lonSW,latX,lonX
 3.167,7,IGUAÇU,AVENIDA IGUAÇU,Curitiba,PR,80240031,ADM,-25.4337318,-49.2727374,-25.456406,-49.3044252,-25.4526078,-49.2970798
 12.546,17,Rua COPÉRNICO,GUARANI,Colombo,PR,83408060,ADM,-25.3726093,-49.18536899999999,-25.3779683,-49.19043,-25.3754897,-49.1878563
 -,-,Rua Coronel Joaquim Ignácio Taborda Ribas,Bigorrilho,Curitiba,PR,80730330,ADM,-25.4318898,-49.2968185,-25.441255,-49.30188949999999,-25.4366308,-49.2996705
