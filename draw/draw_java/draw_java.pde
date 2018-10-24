@@ -9,16 +9,42 @@ Requirements:  map.svg
 
 PShape map;
 
+float alpha,
+			x,
+			y,
+			r_width,
+			r_height,
+			scr_scale = 1,
+			minLat = -25.346814,
+			minLon = -49.389163,
+			maxLat = -25.645500,
+			maxLon = -49.185324;
+
 int iterator,
     hue,
     sat,
-    bgt;
+    bgt,
+		scr_w = 1250,
+		scr_h = 2080;
 
-float alpha;
+Table table;
+
+void set_coord(float latNE, float lonNE, float latSW, float lonSW) {
+	r_width = lonNE - lonSW;
+	r_height = latNE - latSW;
+
+	x = (lonNE + lonSW) / 2;
+	y = (latNE + latSW) / 2;
+
+
+}
 
 void setup() {
   //Environment settings
-  size(400,666); // map.size = [1250, 2080] -> img.size * 0.32 [Must be the size of the map]
+	scr_scale = 0.32;
+	scr_w *= scr_scale;
+	scr_h *= scr_scale;
+  size(scr_w, scr_h); // map.size = [1250, 2080] -> img.size * 0.32 [Must be the size of the map]
   colorMode(HSB, 360, 100, 100, 100);
   noStroke();
   background(0xFFFFFFFF);
@@ -31,18 +57,19 @@ void setup() {
   map = loadShape("./temp/map.svg");
   map.scale(0.32); // Good size for a 2080p original size
   shapeMode(CORNER);
-}
 
-void draw() {
-  shape(map);
+  //Loading Table
+  table = loadTable("./temp/table.csv", "header, tsv");
 
-  //Example of generating heat points (alpha variable by mouse clicking)
-  for(iterator = 0; iterator < 5; iterator++) {
+	for (TableRow row : table.rows()) {
+		set_coord();
     fill(hue - iterator * 50, sat, bgt, alpha);
     rect(iterator * 50, 200 + iterator * 50, 150, 150);
   }
+
+	shape(map);
 }
 
-void mouseClicked() {
-  alpha = alpha + 0.9;
+void draw() {
+
 }
