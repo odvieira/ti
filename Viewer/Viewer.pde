@@ -1,7 +1,11 @@
 
 PImage img;
+
 PShader shade;
-int offsetX, offsetY;
+
+int offsetX,
+		offsetY,
+		zoom = -1;
 
 
 public void settings() {
@@ -9,12 +13,14 @@ public void settings() {
 }
 
 public void setup() {
-  noCursor();
   img = loadImage(System.getenv("HM_OUT"));
-  // The offsets are needed if the image size is
+
+	// The offsets are needed if the image size is
   // different from the display size
   offsetX = (width - img.width)/2;
   offsetY = (height - img.height)/2;
+
+
   initShaders(img);
 }
 
@@ -22,17 +28,28 @@ public void mouseMoved() {
   shade.set("lensPos", mouseX - offsetX, mouseY - offsetY);
 }
 
+public void mouseClicked() {
+	zoom = 0-zoom;
+}
+
 public void draw() {
-  background(128);
-  shader(shade);
-  drawOutput(offsetX, offsetY, img.width, img.height);
+  if(zoom == 1) {
+		noCursor();
+		background(128);
+		shader(shade);
+		drawOutput(offsetX, offsetY, img.width, img.height);
+	}
+	else {
+		background(img);
+		cursor();
+	}
 }
 
 public void initShaders(PImage img) {
   shade = loadShader("fisheye.glsl");
   shade.set("image", img);
   shade.set("size", img.width, img.height);
-  shade.set("lensSize", 80.0f);
+  shade.set("lensSize", 100.0f);
   shade.set("lensPos", 200, 100);
 }
 
