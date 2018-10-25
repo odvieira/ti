@@ -1,11 +1,16 @@
+
 PImage img;
 PShader shade;
 int offsetX, offsetY;
 
+
+public void settings() {
+  size(Integer.parseInt(System.getenv("HM_SCR_W")), Integer.parseInt(System.getenv("HM_SCR_H")), P2D);
+}
+
 public void setup() {
-  size(445, 705, P2D);
   noCursor();
-  img = loadImage("../draw_java/output.png");
+  img = loadImage(System.getenv("HM_OUT"));
   // The offsets are needed if the image size is
   // different from the display size
   offsetX = (width - img.width)/2;
