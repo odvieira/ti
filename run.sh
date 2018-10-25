@@ -29,6 +29,13 @@ ${PROC} --sketch=./Designer --run
 
 echo "Loading heat map..."
 cp ./Designer/${HM_OUT} ./Viewer/${HM_OUT}
+if [ -d Results ]
+	then
+			mv ./Designer/${HM_OUT} ./Results
+	else
+		mkdir Results
+		mv ./Designer/${HM_OUT} ./Results
+fi
 
 echo "Reading heat map..."
 ${PROC} --sketch=./Viewer --run
