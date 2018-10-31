@@ -1,7 +1,7 @@
 #!/bin/sh
 echo "Loading environment variables..."
 
-export PROC="/opt/processing-3.4/processing-java"
+export PROC="/opt/processing-3.4"
 export HM_SCR_SCALE="0.36"
 export HM_SCR_W="445"
 export HM_SCR_H="705"
@@ -25,7 +25,7 @@ cp ${LIMITS} ./Designer/temp/limits
 
 
 echo "Generating heat map..."
-${PROC} --sketch=./Designer --run
+${PROC}/processing-java --sketch=./Designer --run
 
 echo "Loading heat map..."
 cp ./Designer/${HM_OUT} ./Viewer/${HM_OUT}
