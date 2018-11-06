@@ -38,7 +38,7 @@ if [ -d Results ]
 fi
 
 echo "Reading heat map..."
-${PROC} --sketch=./Viewer --run
+${PROC}/processing-java --sketch=./Viewer --run
 
 echo "Exiting..."
 rm -rf ./Viewer/${HM_OUT}
