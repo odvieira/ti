@@ -1,7 +1,7 @@
 #!/bin/sh
 echo "Loading environment variables..."
 
-export PROC="/opt/processing-3.4"
+export PROC="/usr/local/programas/processing-3.3"
 export HM_SCR_SCALE="0.36"
 export HM_SCR_W="445"
 export HM_SCR_H="705"

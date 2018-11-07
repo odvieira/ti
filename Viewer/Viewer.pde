@@ -1,36 +1,58 @@
 
-PImage img;
+PImage	img;
 
 PShader shade;
 
-int offsetX,
+Table table;
+
+int		offsetX,
 		offsetY,
-		zoom = -1;
+		zoom = -1,
+		i = 0;
 
 
 public void settings() {
-  size(Integer.parseInt(System.getenv("HM_SCR_W")), Integer.parseInt(System.getenv("HM_SCR_H")), P2D);
+	size(Integer.parseInt(System.getenv("HM_SCR_W")), Integer.parseInt(System.getenv("HM_SCR_H")), P2D);
 }
 
 public void setup() {
-  img = loadImage(System.getenv("HM_OUT"));
+	img = loadImage(System.getenv("HM_OUT"));
+
+	table = loadTable("ContagemDeBairros.csv", "csv");
+	table.addColumn();
+	table.addColumn();
 
 	// The offsets are needed if the image size is
-  // different from the display size
-  offsetX = (width - img.width)/2;
-  offsetY = (height - img.height)/2;
+	// different from the display size
+	offsetX = (width - img.width)/2;
+	offsetY = (height - img.height)/2;
+
+	println(table.getString(i, 0));
 
 
-  initShaders(img);
+	initShaders(img);
 }
 
 public void mouseMoved() {
-  shade.set("lensPos", mouseX - offsetX, mouseY - offsetY);
+	shade.set("lensPos", mouseX - offsetX, mouseY - offsetY);
 }
 
 public void mouseClicked() {
-	zoom = 0-zoom;
+	//zoom = 0-zoom;
+
+	if(mouseButton != RIGHT)
+		return;
+
+	table.setInt(i, 3, mouseX);
+	table.setInt(i, 4, mouseY);
+
+	if(i < getRowCount() - 1)
+		println(table.getString(++i, 0));
+	else
+		saveTable(table, "filename.csv", "csv");
 }
+
+public void 
 
 public void draw() {
   if(zoom == 1) {
@@ -46,21 +68,21 @@ public void draw() {
 }
 
 public void initShaders(PImage img) {
-  shade = loadShader("fisheye.glsl");
-  shade.set("image", img);
-  shade.set("size", img.width, img.height);
-  shade.set("lensSize", 100.0f);
-  shade.set("lensPos", 200, 100);
+	shade = loadShader("fisheye.glsl");
+	shade.set("image", img);
+	shade.set("size", img.width, img.height);
+	shade.set("lensSize", 100.0f);
+	shade.set("lensPos", 200, 100);
 }
 
 public void drawOutput(float x, float y, float w, float h) {
-  pushMatrix();
-  translate(x, y);
-  beginShape(QUAD);
-  vertex(0, 0, 0, 0);
-  vertex(0, h, 0, 1);
-  vertex(w, h, 1, 1);
-  vertex(w, 0, 1, 0);
-  endShape();
-  popMatrix();
+	pushMatrix();
+	translate(x, y);
+	beginShape(QUAD);
+	vertex(0, 0, 0, 0);
+	vertex(0, h, 0, 1);
+	vertex(w, h, 1, 1);
+	vertex(w, 0, 1, 0);
+	endShape();
+	popMatrix();
 }
