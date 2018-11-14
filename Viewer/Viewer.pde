@@ -18,9 +18,7 @@ public void settings() {
 public void setup() {
 	img = loadImage(System.getenv("HM_OUT"));
 
-	table = loadTable("ContagemDeBairros.csv", "csv");
-	table.addColumn();
-	table.addColumn();
+	table = loadTable("errado.csv", "csv");
 
 	// The offsets are needed if the image size is
 	// different from the display size
@@ -40,19 +38,18 @@ public void mouseMoved() {
 public void mouseClicked() {
 	//zoom = 0-zoom;
 
-	if(mouseButton != RIGHT)
-		return;
+    println("I="+i);
 
-	table.setInt(i, 3, mouseX);
-	table.setInt(i, 4, mouseY);
+	table.setInt(i, 2, mouseX);
+	table.setInt(i, 3, mouseY);
 
-	if(i < getRowCount() - 1)
+	if(i < table.getRowCount() - 1){
 		println(table.getString(++i, 0));
+    }
 	else
 		saveTable(table, "filename.csv", "csv");
 }
 
-public void 
 
 public void draw() {
   if(zoom == 1) {
