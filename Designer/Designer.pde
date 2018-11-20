@@ -28,7 +28,7 @@ int	hue,
 Table table;
 
 public void settings() {
-	size(Integer.parseInt(System.getenv("HM_SCR_W")), Integer.parseInt(System.getenv("HM_SCR_H")));
+	size(Integer.parseInt(System.getenv("HM_SCR_W"))*2, Integer.parseInt(System.getenv("HM_SCR_H"))*2);
 }
 
 public void setup() {
@@ -40,8 +40,8 @@ public void setup() {
 	sat = 100;
 	bgt = 100;
 	alpha = 1;
-	scr_w = Integer.parseInt(System.getenv("HM_SCR_W"));
-	scr_h = Integer.parseInt(System.getenv("HM_SCR_H"));
+	scr_w = Integer.parseInt(System.getenv("HM_SCR_W"))*2;
+	scr_h = Integer.parseInt(System.getenv("HM_SCR_H"))*2;
 	scr_scale = Float.parseFloat(System.getenv("HM_SCR_SCALE"));
 	minLat = Float.parseFloat(System.getenv("HM_MIN_LAT"));
 	maxLat = Float.parseFloat(System.getenv("HM_MAX_LAT"));
@@ -50,7 +50,7 @@ public void setup() {
 
   //Loading Map
 	map = loadShape(System.getenv("HM_MAP"));
-	map.scale(scr_scale);
+	map.scale(scr_scale*2);
 	shapeMode(CORNER);
 
   //Loading Table
