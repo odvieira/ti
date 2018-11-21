@@ -1,15 +1,21 @@
 #!/bin/sh
 echo "Verifying processing version..."
+
 if [ ! -d /opt/processing-3.4 ] && [ ! -d ~/processing-3.4 ]
   then
     wget http://download.processing.org/processing-3.4-linux64.tgz
     tar -xvf processing-3.4-linux64.tgz
-    mv processing-3.4 ~/processing-3.4
+    mv processing-3.4 ~/
+    export PROC="~/processing-3.4"
 fi
 
 echo "Loading environment variables..."
 
-export PROC="/opt/processing-3.4"
+if [ -d /opt/processing-3.4 ]
+  then
+    export PROC="/opt/processing-3.4"
+fi
+
 export HM_SCR_SCALE="0.36"
 export HM_SCR_W="445"
 export HM_SCR_H="705"
