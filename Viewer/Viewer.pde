@@ -5,14 +5,15 @@ PShader shade;
 
 Table table;
 
-int		offsetX,
+int	offsetX,
 		offsetY,
 		zoom = 0,
 		i = 0;
 
 
 public void settings() {
-	size(Integer.parseInt(System.getenv("HM_SCR_W")), Integer.parseInt(System.getenv("HM_SCR_H")), P2D);
+	size(Integer.parseInt(System.getenv("HM_SCR_W")),
+	Integer.parseInt(System.getenv("HM_SCR_H")), P2D);
 }
 
 public void setup() {
@@ -51,23 +52,25 @@ public void draw() {
 	}
 	else {
 		resetShader();
-		image(img,0,0,Integer.parseInt(System.getenv("HM_SCR_W")),Integer.parseInt(System.getenv("HM_SCR_H")));
+		image(img,0,0,Integer.parseInt(System.getenv("HM_SCR_W")),
+		Integer.parseInt(System.getenv("HM_SCR_H")));
 		cursor();
 	}
     resetShader();
     for (int i=0; i< table.getRowCount(); i++){
-        int posX = table.getInt(i, 2);
+      int posX = table.getInt(i, 2);
 	    int posY = table.getInt(i, 3);
-	    
-    	if (mouseX > posX-25 && mouseX < posX+25 && mouseY > posY-25 && mouseY < posY+25){
-        	textSize(20);
-        	stroke(255);
+
+    	if (mouseX > posX-25 && mouseX < posX+25 &&
+    	mouseY > posY-25 && mouseY < posY+25){
+        	textSize(36);
+        	fill(#335599);
         	if (zoom == 1){
-                text(table.getString(i,1), posX+(posX-mouseX)*1.4-9, posY+(posY-mouseY)*1.4);            
-            } else {
+                text(table.getString(i,1), posX+(posX-mouseX)*1.4-9,
+                posY+(posY-mouseY)*1.4);
+            } /*else {
                 text(table.getString(i,1), posX-6, posY);
-            }
-        	fill(28, 69, 135);
+            }*/
    		}
 	}
 	shader(shade);
